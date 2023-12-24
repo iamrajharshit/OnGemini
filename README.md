@@ -69,15 +69,17 @@ response.candidates
 |Sexually explicit|	Contains references to sexual acts or other lewd content.|
 |Dangerous|	Promotes, facilitates, or encourages harmful acts.|
 
+The following is a python code snippet showing how to set safety settings in your ``GenerateContent`` call. This sets the harm categories Harassment and Hate speech to ``BLOCK_LOW_AND_ABOVE`` which blocks any content that has a low or higher probability of being ``Harassment`` or ``Hate speech`` and ``BLOCK_NONE`` for ``Dangerous`` category.
+
 ```
 response = model.generate_content("Prompt",
-                                  safety_settings=[
-                                      {"category":'HARM_CATEGORY_HARASSMENT',
-                                                    "threshold":'block_none'},
-                                                     {"category":'HARM_CATEGORY_DANGEROUS_CONTENT',
-                                                      "threshold":'block_none'},
-                                                      {"category":'HARM_CATEGORY_HATE_SPEECH',
-                                                       "threshold":'block_none'}])
+                   safety_settings=[
+                            {"category":'HARM_CATEGORY_HARASSMENT',
+                             "threshold":'BLOCK_LOW_AND_ABOVE'},
+                            {"category":'HARM_CATEGORY_DANGEROUS_CONTENT',
+                             "threshold":'BLOCK_NONE'},
+                            {"category":'HARM_CATEGORY_HATE_SPEECH',
+                             "threshold":'BLOCK_LOW_AND_ABOVE'}])
 
 ```
 
