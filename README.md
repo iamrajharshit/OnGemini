@@ -60,7 +60,8 @@ To see the number of output generated as per prompt
 response.candidates
 ```
 <h2>SAFETY OF THE MODEL</h2>
-[Saftey Setting Gemini](https://ai.google.dev/docs/safety_setting_gemini)are part of the request you send to the text service. It can be adjusted for each request you make to the API. The following table lists the categories that you can set and describes the type of harm that each category encompasses.
+
+[Saftey Setting Gemini](https://ai.google.dev/docs/safety_setting_gemini) are part of the request you send to the text service. It can be adjusted for each request you make to the API. The following table lists the categories that you can set and describes the type of harm that each category encompasses.
 
 |Categories|Decriptions|
 |----|-----|
