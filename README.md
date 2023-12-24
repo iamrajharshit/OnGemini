@@ -120,3 +120,12 @@ It controls the randomness in the generation process. A higher temperature leads
 
 Response:`Imagine you have a very special box`
 
+<h2>Generate text from image and text inputs</h2>
+Gemini provides a multimodal model (`gemini-pro-vision`) that accepts both text and images and inputs. The `GenerativeModel.generate_content` API is designed to handle multimodal prompts and returns a text output.
+
+```
+import PIL.Image
+
+img = PIL.Image.open('image_1.jpg')
+img
+```
