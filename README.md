@@ -130,6 +130,7 @@ img = PIL.Image.open('leaf2dull.JPG')
 img
 ```
 ![Dull Leaf](https://github.com/iamrajharshit/OnGemini/blob/main/img%20data/leaf2%20dull.JPG)
+
 Use the `gemini-pro-vision` model and pass the image to the model with `generate_content`.
 
 ```
@@ -139,4 +140,55 @@ model = genai.GenerativeModel('gemini-pro-vision')
 response = model.generate_content(img)
 Markdown(response.text)
 ```
+To provide both text and images in a prompt, pass a list containing the strings and images:
+```
+response = model.generate_content(["Describe the health of the leaf.", img], stream=True)
+response.resolve()
+Markdown(response.text)
+```
+
+<h2>Chat conversations</h2>
+Gemini enables you to have freeform conversations across multiple turns. The `ChatSession` class simplifies the process by managing the state of the conversation, so unlike with `generate_content`, you do not have to store the conversation history as a list.
+
+Initialize the chat:
+```
+model = genai.GenerativeModel('gemini-pro')
+chat = model.start_chat(history=[])
+chat
+```
+Note: The vision model `gemini-pro-vision` is not optimized for multi-turn chat.
+
+The `ChatSession.send_message` method returns the same `GenerateContentResponse` type as `GenerativeModel.generate_content`. It also appends your message and the response to the chat history:
+```
+response = chat.send_message("What are the usecases of LLMs?")
+Markdown(response.text)
+```
+Check history
+```
+chat.history
+```
+```
+response = chat.send_message("Okay. Can you explain more about Information Retrieval using llms?")
+Markdown(response.text)
+```
+`glm.Content` objects contain a list of `glm.Part` objects that each contain either a text (string) or inline_data (`glm.Blob`), where a blob contains binary data and a `mime_type`. The chat history is available as a list of `glm.Content` objects in `ChatSession.history`:
+
+```
+for message in chat.history:
+  display(Markdown(f'**{message.role}**: {message.parts[0].text}'))
+```
+<h2>Use Embeddings</h2>
+
+[Embedding](https://developers.google.com/machine-learning/glossary#embedding-vector) is a technique used to represent information as a list of floating point numbers in an array. With Gemini, you can represent text (words, sentences, and blocks of text) in a vectorized form, making it easier to compare and contrast embeddings. For example, two texts that share a similar subject matter or sentiment should have similar embeddings, which can be identified through mathematical comparison techniques such as cosine similarity. For more on how and why you should use embeddings, refer to the [Embeddings guide](https://ai.google.dev/docs/embeddings_guide).
+
+Use the `embed_content` method to generate embeddings. The method handles embedding for the following tasks (`task_type`):
+
+|Task Type|	Description|
+|----|----|
+|RETRIEVAL_QUERY|	Specifies the given text is a query in a search/retrieval setting.
+|RETRIEVAL_DOCUMENT|	Specifies the given text is a document in a search/retrieval setting. Using this task type requires a title.
+|SEMANTIC_SIMILARITY|	Specifies the given text will be used for Semantic Textual Similarity (STS).
+|CLASSIFICATION|	Specifies that the embeddings will be used for classification.
+|CLUSTERING|	Specifies that the embeddings will be used for clustering.
+
 
