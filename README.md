@@ -84,5 +84,39 @@ response = model.generate_content("Prompt",
 
 ```
 
+<h2>Configuring Hyperparameters with GenerationConfig</h2>
+To generate content based on the prompt "Explain Quantum Mechanics to a five year old?" The `model.generate_content()` function likely uses a machine learning model to generate text based on the input prompt and certain generation configuration parameters.
 
+```
+response = model.generate_content("Explain Quantum Mechanics to a five year old?",
+                                  generation_config=genai.types.GenerationConfig(
+                                  candidate_count=1,
+                                  stop_sequences=['.'],
+                                  max_output_tokens=20,
+                                  top_p = 0.7,
+                                  top_k = 4,
+                                  temperature=0.7)
+                                  )
+Markdown(response.text)
+```
+`candidate_count`:
+This parameter specifies the number of candidate responses that the model will consider before making a final prediction. In this case, it's set to 1, so the model generates a single candidate response.
+
+`stop_sequences`:
+It's a list of strings that, when encountered in the generated text, signals the model to stop generating further content. In this case, the model will stop generating when it encounters a period ('.'). So, the generated output will be up to the first occurrence of a period.
+
+`max_output_tokens`:
+It determines the maximum number of tokens (words or subword units) that the model will output in the generated text. The generation will stop once this limit is reached. Here, it's set to 20 tokens.
+
+`max_output_tokens`:
+It determines the maximum number of tokens (words or subword units) that the model will output in the generated text. The generation will stop once this limit is reached. Here, it's set to 20 tokens.
+
+
+`top_k` (Top-k sampling):
+This parameter restricts the model to consider only the top k most probable tokens at each step of generation. It helps in controlling the diversity of generated text. Lower values of top_k make the model more conservative, while higher values allow more diversity. Here, it's set to 4
+
+`temperature`
+It controls the randomness in the generation process. A higher temperature leads to more randomness and diversity in the generated text, while a lower temperature produces more deterministic outputs. Here, it's set to 0.7, indicating a moderate level of randomness.
+
+Response:`Imagine you have a very special box`
 
