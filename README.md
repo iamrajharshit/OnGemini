@@ -24,7 +24,7 @@ import google.generativeai as genai
 genai.configure(api_key=GOOGLE_API_KEY)
 ```
 <h2>List models</h2>
-<p><h4>Now you're ready to call the Gemini API. Use the available Gemini models:</h4></p>
+<p>Now you're ready to call the Gemini API. Use the available Gemini models:</p>
 
 + gemini-pro: optimized for text-only prompts.
 ```
@@ -58,6 +58,26 @@ To see the number of output generated as per prompt
 
 ```
 response.candidates
+```
+<h2>SAFETY OF THE MODEL</h2>
+[Saftey Setting Gemini](https://ai.google.dev/docs/safety_setting_gemini)are part of the request you send to the text service. It can be adjusted for each request you make to the API. The following table lists the categories that you can set and describes the type of harm that each category encompasses.
+
+|Categories|Decriptions|
+|Harassment|	Negative or harmful comments targeting identity and/or protected attributes.|
+|Hate speech|	Content that is rude, disrespectful, or profane.|
+|Sexually explicit|	Contains references to sexual acts or other lewd content.|
+|Dangerous|	Promotes, facilitates, or encourages harmful acts.|
+
+```
+response = model.generate_content("Prompt",
+                                  safety_settings=[
+                                      {"category":'HARM_CATEGORY_HARASSMENT',
+                                                    "threshold":'block_none'},
+                                                     {"category":'HARM_CATEGORY_DANGEROUS_CONTENT',
+                                                      "threshold":'block_none'},
+                                                      {"category":'HARM_CATEGORY_HATE_SPEECH',
+                                                       "threshold":'block_none'}])
+
 ```
 
 
