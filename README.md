@@ -63,6 +63,7 @@ response.candidates
 [Saftey Setting Gemini](https://ai.google.dev/docs/safety_setting_gemini)are part of the request you send to the text service. It can be adjusted for each request you make to the API. The following table lists the categories that you can set and describes the type of harm that each category encompasses.
 
 |Categories|Decriptions|
+|----|-----|
 |Harassment|	Negative or harmful comments targeting identity and/or protected attributes.|
 |Hate speech|	Content that is rude, disrespectful, or profane.|
 |Sexually explicit|	Contains references to sexual acts or other lewd content.|
