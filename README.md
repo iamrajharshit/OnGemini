@@ -87,6 +87,7 @@ response = model.generate_content("Prompt",
 ```
 
 <h2>Configuring Hyperparameters with GenerationConfig</h2>
+
 To generate content based on the prompt "Explain Quantum Mechanics to a five year old?" The `model.generate_content()` function likely uses a machine learning model to generate text based on the input prompt and certain generation configuration parameters.
 
 ```
@@ -123,6 +124,7 @@ It controls the randomness in the generation process. A higher temperature leads
 Response:`Imagine you have a very special box`
 
 <h2>Generate text from image and text inputs</h2>
+
 Gemini provides a multimodal model (`gemini-pro-vision`) that accepts both text and images and inputs. The `GenerativeModel.generate_content` API is designed to handle multimodal prompts and returns a text output.
 
 ```
