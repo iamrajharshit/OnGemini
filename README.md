@@ -172,8 +172,8 @@ chat.history
 response = chat.send_message("Okay. Can you explain more about Information Retrieval using llms?")
 Markdown(response.text)
 ```
+Know about [glm](https://medium.com/@sarka.pribylova/generalized-linear-model-f607ac7f0ef5) <br>
 `glm.Content` objects contain a list of `glm.Part` objects that each contain either a text (string) or inline_data (`glm.Blob`), where a blob contains binary data and a `mime_type`. The chat history is available as a list of `glm.Content` objects in `ChatSession.history`:
-know about [glm](https://medium.com/@sarka.pribylova/generalized-linear-model-f607ac7f0ef5)
 ```
 for message in chat.history:
   display(Markdown(f'**{message.role}**: {message.parts[0].text}'))
