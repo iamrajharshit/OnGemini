@@ -43,9 +43,22 @@ According to Google, the gemini-pro has an input context length of 30k tokens an
 ```
 model = genai.GenerativeModel('gemini-pro')
 ```
-<p>Pass the prompt to generate text, the response.text accessor is all you need. To display formatted Markdown text, use the Markdown function.</p>
+Pass the prompt to generate text, the ``response.text`` accessor is all you need. To display formatted Markdown text, use the Markdown function.
 
 ```
 response = model.generate_content("Prompt")
 Markdown(response.text)
 ```
+If the API failed to return a result, use ``GenerateContentRespose.prompt_feedback`` to see if it was blocked due to saftey concerns regarding the prompt.
+
+```
+response.prompt_feedback
+```
+To see the number of output generated as per prompt
+
+```
+response.candidates
+```
+
+
+
