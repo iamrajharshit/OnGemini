@@ -10,7 +10,27 @@
 
 <h3>Install Google Generative AI</h3>
 
-```!pip install -q -U google-generativeai```
+```
+!pip install -q -U google-generativeai
+```
 <h3>Import Generative AI</h3>
 
-```import google.generativeai as genai```
+```
+import google.generativeai as genai
+```
+<h3>Pass the API Key</h3>
+
+```
+genai.configure(api_key=GOOGLE_API_KEY)
+```
+<h2>List models</h2>
+<p><h4>Now you're ready to call the Gemini API. Use the available Gemini models:</h4></p>
+
++ gemini-pro: optimized for text-only prompts.
+```
+model = genai.GenerativeModel('gemini-pro')
+```
++ gemini-pro-vision: optimized for text-and-images prompts.
+```
+model = genai.GenerativeModel('gemini-pro-vision')
+```
