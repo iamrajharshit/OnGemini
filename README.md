@@ -20,6 +20,8 @@ import google.generativeai as genai
 ```
 <h3>Pass the API Key</h3>
 
+Get your [APIkey](https://makersuite.google.com/app/apikey)
+
 ```
 genai.configure(api_key=GOOGLE_API_KEY)
 ```
