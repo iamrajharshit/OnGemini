@@ -34,3 +34,18 @@ model = genai.GenerativeModel('gemini-pro')
 ```
 model = genai.GenerativeModel('gemini-pro-vision')
 ```
+
+<h2>Generate text from text inputs</h2>
+<p>For text-only prompts, use the gemini-pro model.
+According to Google, the gemini-pro has an input context length of 30k tokens and an output context length of 2k tokens.
+</p>
+
+```
+model = genai.GenerativeModel('gemini-pro')
+```
+<p>Pass the prompt to generate text, the response.text accessor is all you need. To display formatted Markdown text, use the Markdown function.</p>
+
+```
+response = model.generate_content("Prompt")
+Markdown(response.text)
+```
