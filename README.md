@@ -148,6 +148,7 @@ Markdown(response.text)
 ```
 
 <h2>Chat conversations</h2>
+
 Gemini enables you to have freeform conversations across multiple turns. The `ChatSession` class simplifies the process by managing the state of the conversation, so unlike with `generate_content`, you do not have to store the conversation history as a list.
 
 Initialize the chat:
@@ -172,7 +173,7 @@ response = chat.send_message("Okay. Can you explain more about Information Retri
 Markdown(response.text)
 ```
 `glm.Content` objects contain a list of `glm.Part` objects that each contain either a text (string) or inline_data (`glm.Blob`), where a blob contains binary data and a `mime_type`. The chat history is available as a list of `glm.Content` objects in `ChatSession.history`:
-
+know about [glm](https://medium.com/@sarka.pribylova/generalized-linear-model-f607ac7f0ef5)
 ```
 for message in chat.history:
   display(Markdown(f'**{message.role}**: {message.parts[0].text}'))
@@ -190,5 +191,65 @@ Use the `embed_content` method to generate embeddings. The method handles embedd
 |SEMANTIC_SIMILARITY|	Specifies the given text will be used for Semantic Textual Similarity (STS).
 |CLASSIFICATION|	Specifies that the embeddings will be used for classification.
 |CLUSTERING|	Specifies that the embeddings will be used for clustering.
+
+The following generates an embedding for a single string for document retrieval:
+```
+result = genai.embed_content(
+    model="models/embedding-001",
+    content="What is the meaning of life?",
+    task_type="retrieval_document",
+    title="Embedding of single string")
+
+# 1 input > 1 vector output
+print(str(result['embedding'])[:50], '... TRIMMED]')
+```
+Note: The `retrieval_document` task type is the only task that accepts a title.
+
+To handle batches of strings, pass a list of strings in `content`:
+
+```
+result = genai.embed_content(
+    model="models/embedding-001",
+    content=[
+      'What is the meaning of life?',
+      'How much wood would a woodchuck chuck?',
+      'How does the brain work?'],
+    task_type="retrieval_document",
+    title="Embedding of list of strings")
+
+# A list of inputs > A list of vectors output
+for v in result['embedding']:
+  print(str(v)[:50], '... TRIMMED ...')
+```
+While the `genai.embed_content` function accepts simple strings or lists of strings, it is actually built around the `glm.Content` type (like `GenerativeModel.generate_content`). `glm.Content` objects are the primary units of conversation in the API.
+
+While the `glm.Content` object is multimodal, the `embed_content` method only supports text embeddings. This design gives the API the possibility to expand to multimodal embeddings.
+
+```
+response.candidates[0].content
+```
+```
+result = genai.embed_content(
+    model = 'models/embedding-001',
+    content = response.candidates[0].content)
+
+# 1 input > 1 vector output
+print(str(result['embedding'])[:50], '... TRIMMED ...')
+```
+Similarly, the chat history contains a list of `glm.Content` objects, which you can pass directly to the `embed_content` function:
+
+```
+chat.history
+```
+
+```
+result = genai.embed_content(
+    model = 'models/embedding-001',
+    content = chat.history)
+
+# 1 input > 1 vector output
+for i,v in enumerate(result['embedding']):
+  print(str(v)[:50], '... TRIMMED...')
+```
 
 
