@@ -126,6 +126,17 @@ Gemini provides a multimodal model (`gemini-pro-vision`) that accepts both text 
 ```
 import PIL.Image
 
-img = PIL.Image.open('image_1.jpg')
+img = PIL.Image.open('leaf2dull.JPG')
 img
 ```
+![Dull Leaf](https://github.com/iamrajharshit/OnGemini/blob/main/img%20data/leaf2%20dull.JPG)
+Use the `gemini-pro-vision` model and pass the image to the model with `generate_content`.
+
+```
+model = genai.GenerativeModel('gemini-pro-vision')
+```
+```
+response = model.generate_content(img)
+Markdown(response.text)
+```
+
