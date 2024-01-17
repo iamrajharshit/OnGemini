@@ -8,6 +8,10 @@
 <li>Use embeddings for large language models.</li></ol></p>
 <br>
 
+<h3>Open a NoteBook </h3>
+
+Here, we are using [Google Colab notebook](https://colab.new/), open the notebook.
+
 <h3>Install Google Generative AI</h3>
 
 ```
