@@ -79,7 +79,7 @@ response.candidates
 The following is a python code snippet showing how to set safety settings in your ``GenerateContent`` call. This sets the harm categories Harassment and Hate speech to ``BLOCK_LOW_AND_ABOVE`` which blocks any content that has a low or higher probability of being ``Harassment`` or ``Hate speech`` and ``BLOCK_NONE`` for ``Dangerous`` category.
 
 ```
-response = model.generate_content("Prompt",
+response = model.generate_content(prompt,
                    safety_settings=[
                             {"category":'HARM_CATEGORY_HARASSMENT',
                              "threshold":'BLOCK_LOW_AND_ABOVE'},
