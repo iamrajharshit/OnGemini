@@ -129,8 +129,8 @@ Gemini provides a multimodal model (`gemini-pro-vision`) that accepts both text 
 
 ```
 import PIL.Image
-
-img = PIL.Image.open('leaf2dull.JPG')
+file_path="leaf2dull.JPG"
+img = PIL.Image.open(file_path)
 img
 ```
 ![Dull Leaf](https://github.com/iamrajharshit/OnGemini/blob/main/img%20data/leaf2%20dull.JPG)
