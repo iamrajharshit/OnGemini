@@ -48,7 +48,7 @@ model = genai.GenerativeModel('gemini-pro')
 Pass the prompt to generate text, the ``response.text`` accessor is all you need. To display formatted Markdown text, use the Markdown function.
 
 ```
-response = model.generate_content("Prompt")
+response = model.generate_content(prompt)
 Markdown(response.text)
 ```
 If the API failed to return a result, use ``GenerateContentRespose.prompt_feedback`` to see if it was blocked due to saftey concerns regarding the prompt.
