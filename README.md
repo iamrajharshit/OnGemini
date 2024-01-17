@@ -122,7 +122,7 @@ It determines the maximum number of tokens (words or subword units) that the mod
 `top_k` (Top-k sampling):
 This parameter restricts the model to consider only the top k most probable tokens at each step of generation. It helps in controlling the diversity of generated text. Lower values of top_k make the model more conservative, while higher values allow more diversity. Here, it's set to 4
 
-`temperature`
+`temperature`:
 It controls the randomness in the generation process. A higher temperature leads to more randomness and diversity in the generated text, while a lower temperature produces more deterministic outputs. Here, it's set to 0.7, indicating a moderate level of randomness.
 
 Response:`Imagine you have a very special box`
